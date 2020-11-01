@@ -1,0 +1,15 @@
+service:
+  type: LoadBalancer
+  port: 80
+
+persistence:
+  config:
+    enabled: true
+    skipuninstall: true
+    storageClass: nfs-client
+    subpath: "/config"
+  books:
+    enabled: true
+    skipuninstall: true 
+    storageClass: nfs-client
+    subpath: "/books"

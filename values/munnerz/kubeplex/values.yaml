@@ -1,0 +1,32 @@
+ingress: 
+  enabled: false
+
+persistence:
+  data:
+    enabled: true
+    storageClass: nfs-client
+  transcode:
+    enabled: true
+    storageClass: nfs-client
+  config:
+    enabled: true
+    storageClass: nfs-client
+
+claimToken: claim-nfTG3msyMpm3LyaZBaVR
+
+service:
+  type: LoadBalancer
+
+timezone: Europe/Athens
+
+nodeSelector:
+  beta.kubernetes.io/arch: arm
+
+image:
+  repository: linuxserver/plex
+  tag: arm32v7-latest
+
+kubePlex:
+  enabled: false
+  image:
+    repository: yoshwata/kube-plex_linux_arm7l

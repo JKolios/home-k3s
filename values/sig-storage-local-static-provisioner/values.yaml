@@ -1,0 +1,30 @@
+classes:
+- name:  local-storage # Defines name of storage classe.
+  # Path on the host where local volumes of this storage class are mounted
+  # under.
+  hostDir: /mnt/disks
+  # Optionally specify mount path of local volumes. By default, we use same
+  # path as hostDir in container.
+  # mountDir: /mnt/disks
+  # The volume mode of created PersistentVolume object. Default to Filesystem
+  # if not specified.
+  volumeMode: Filesystem
+  # Filesystem type to mount.
+  # It applies only when the source path is a block device,
+  # and desire volume mode is Filesystem.
+  # Must be a filesystem type supported by the host operating system.
+  fsType: ext4
+  # File name pattern to discover. By default, discover all file names.
+  namePattern: "*"
+  blockCleanerCommand: []
+  # or blkdiscard utility by uncommenting the line below.
+  #  - "/scripts/blkdiscard.sh"
+  # Uncomment to create storage class object with default configuration.
+  storageClass: true
+  # Uncomment to create storage class object and configure it.
+  # storageClass:
+  #   reclaimPolicy: Delete # Available reclaim policies: Delete/Retain, defaults: Delete.
+  #   isDefaultClass: true # set as default class
+
+daemonset:  
+  image: gcr.io/k8s-staging-sig-storage/local-volume-provisioner-arm@sha256:d318af5a4fd4a151b15766512da45edff87e8ff798b5981e0c500f34e93b7f41

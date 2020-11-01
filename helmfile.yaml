@@ -1,0 +1,40 @@
+repositories:
+  - name: bananaspliff
+    url: https://bananaspliff.github.io/geek-charts
+  - name: k8s-at-home
+    url: https://k8s-at-home.com/charts/
+
+releases:
+  - name: sig-storage-local-static-provisioner
+    namespace: default
+    chart: ./charts/sig-storage-local-static-provisioner/
+    version: 3.0.0
+    values:
+      - ./values/sig-storage-local-static-provisioner/values.yaml
+
+  - name: sonarr
+    namespace: media
+    chart: bananaspliff/sonarr
+    version: 0.1.0
+    values:
+      - ./values/bananaspliff/sonarr/values.yaml
+
+  - name: radarr
+    namespace: media
+    chart: bananaspliff/radarr
+    version: 0.1.0
+    values:
+      - ./values/bananaspliff/radarr/values.yaml
+
+  - name: calibre-web
+    namespace: media
+    chart: k8s-at-home/calibre-web
+    values:
+      - ./values/k8s-at-home/calibre-web/values.yaml
+
+  - name: plex
+    namespace: media
+    chart: ./charts/munnerz/kubeplex
+    version: 0.2.7
+    values:
+      - ./values/munnerz/kubeplex/values.yaml

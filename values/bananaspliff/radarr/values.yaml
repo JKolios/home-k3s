@@ -1,0 +1,38 @@
+replicaCount: 1
+
+image:
+  repository: linuxserver/radarr
+  tag: arm32v7-latest # ARM image
+  pullPolicy: IfNotPresent
+
+env:
+  - name: PUID
+    value: "1000"
+  - name: PGID
+    value: "1000"
+
+service:
+  type: LoadBalancer
+  port: 80
+
+volumes:
+  - name: radarr-config
+    persistentVolumeClaim:
+      claimName: "radarr-config-pvc" # PersistentVolumeClaim created earlier
+  - name: radarr-movies
+    nfs:
+      path: "/volume1/Movies"
+      server: 192.168.1.111
+  - name: radarr-downloads
+    nfs:
+      path: "/volume1/Storage/downloads"
+      server: 192.168.1.111
+
+volumeMounts:
+  - name: radarr-config
+    mountPath: "/config"
+    subPath: "configs/radarr" # Path /mnt/ssd/media/configs/sonarr where sonarr writes the configuration
+  - name: radarr-movies
+    mountPath: "/movies"
+  - name: radarr-downloads
+    mountPath: "/downloads"
